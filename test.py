@@ -2,6 +2,7 @@
 import mediapipe as mp
 from mediapipe.tasks import python
 from mediapipe.tasks.python import vision
+import os
 
 BaseOptions = mp.tasks.BaseOptions
 GestureRecognizer = mp.tasks.vision.GestureRecognizer
@@ -13,14 +14,17 @@ VisionRunningMode = mp.tasks.vision.RunningMode
 def print_result(result: GestureRecognizerResult, output_image: mp.Image, timestamp_ms: int):
     print('gesture recognition result: {}'.format(result))
 
+model_path = os.path.dirname(os.path.abspath(__file__))  + "/exported_model/gesture_recognizer.task"
+
 # configuration/options/settings for mediapipe
 # https://developers.google.com/mediapipe/solutions/vision/gesture_recognizer/python#configuration_options
 options = GestureRecognizerOptions(
-    base_options=BaseOptions(model_asset_path='/path/to/model.task'), # needs the trained model path here
+    base_options=BaseOptions(model_asset_path=model_path), # needs the trained model path here
     running_mode=VisionRunningMode.LIVE_STREAM, # live video input mode to reduce latency
     num_hands=2, # max number of hands that can be recognized
     result_callback=print_result # displays result (documentation isn't clear about this)
     )
+
 
 with GestureRecognizer.create_from_options(options) as recognizer:
     # The detector is initialized. Use it here.

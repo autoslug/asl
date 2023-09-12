@@ -161,4 +161,5 @@ cython_debug/
 
 
 # manually added ones
-training data/
+Training Data/*
+exported_model/*
