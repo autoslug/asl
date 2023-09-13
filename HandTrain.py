@@ -12,7 +12,7 @@ import matplotlib.pyplot as plt
 # insert training and test data import here
 
 # dataset path
-dataset_path = os.path.dirname(os.path.abspath(__file__))  + "/Training Data/Gesture Image Data/" # insert local path here
+dataset_path = os.getcwd()  + "/Training Data/Gesture Image Data/" # insert local path here
 print(dataset_path)
 
 
@@ -31,7 +31,9 @@ print("passed 1")
 # splits dataset
 data = gesture_recognizer.Dataset.from_folder(
     dirname=dataset_path,
-    hparams=gesture_recognizer.HandDataPreprocessingParams(shuffle=True, min_detection_confidence=0.8)
+    hparams=gesture_recognizer.HandDataPreprocessingParams(
+        shuffle=True,
+        min_detection_confidence=0.8)
 )
 train_data, rest_data = data.split(0.8)
 validation_data, test_data = rest_data.split(0.5)
@@ -39,7 +41,11 @@ validation_data, test_data = rest_data.split(0.5)
 print("passed 2")
 
 # train model
-hparams = gesture_recognizer.HParams(export_dir="exported_model")
+hparams = gesture_recognizer.HParams(
+    export_dir="exported_model",                              
+    epochs=100,
+    batch_size=5
+)
 options = gesture_recognizer.GestureRecognizerOptions(hparams=hparams)
 model = gesture_recognizer.GestureRecognizer.create(
     train_data=train_data,
