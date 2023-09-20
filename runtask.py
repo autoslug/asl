@@ -3,6 +3,7 @@ import mediapipe as mp
 from mediapipe.tasks import python
 from mediapipe.tasks.python import vision
 from mediapipe import solutions
+from mediapipe.framework.formats import landmark_pb2
 import os
 import cv2 as cv
 import numpy as np
@@ -28,7 +29,7 @@ base_opt= BaseOptions(model_asset_path=model_path)
 # Create a gesture recognizer instance with the live stream mode:
 def print_result(result: GestureRecognizerResult, output_image: mp.Image, timestamp_ms: int):
     print('gesture recognition result: {}'.format(result.gestures))
-    # annotated_image = draw_landmarks(imgRGB, result)
+    # annotated_image = draw_landmarks(frame, result)
     # image_result = cv.cvtColor(annotated_image, cv.COLOR_RGB2BGR)
     # cv.imshow("frame", image_result)
     # cv.waitKey(1)
@@ -45,13 +46,21 @@ options = GestureRecognizerOptions(
     )
 
 # for some reason the documentation for anything mp.solutions is non existent
+# this function does not work, To Do
 def draw_landmarks(image, result: GestureRecognizerResult):
     annotated_image = np.copy(image)
-    for x in result.hand_landmarks:
+    
+    for hand_landmark in result.hand_landmarks:
+        hand_landmarks_proto = landmark_pb2.NormalizedLandmarkList()
+        hand_landmarks_proto.landmark.extend([
+            landmark_pb2.NormalizedLandmark(x=landmark.x, y=landmark.y, z=landmark.z) for landmark in hand_landmark
+          ])
         mp_drawing.draw_landmarks(
-            image=image,
-            landmark_list=result.hand_landmarks,
-            connections=mp.solutions.holistic.HAND_CONNECTIONS
+            image=annotated_image,
+            landmark_list=hand_landmarks_proto,
+            connections=mp.solutions.holistic.HAND_CONNECTIONS,
+            landmark_drawing_spec=mp_drawing_styles.get_default_hand_landmarks_style(),
+            connection_drawing_spec=mp_drawing_styles.get_default_hand_connections_style()
             )
     return annotated_image
     
