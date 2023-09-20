@@ -162,4 +162,8 @@ cython_debug/
 
 # manually added ones
 Training Data/*
-exported_model/*
+exported_model/epoch_models
+exported_model/logs
+exported_model/best_model*
+exported_model/checkpoint
+exported_model/metadata.json
