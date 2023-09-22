@@ -28,7 +28,8 @@ base_opt= BaseOptions(model_asset_path=model_path)
 
 # Create a gesture recognizer instance with the live stream mode:
 def print_result(result: GestureRecognizerResult, output_image: mp.Image, timestamp_ms: int):
-    print('gesture recognition result: {}'.format(result.gestures))
+    if(result.gestures!=[]):
+        print('gesture recognition result: {}'.format(result.gestures[0][0].category_name))
     # annotated_image = draw_landmarks(frame, result)
     # image_result = cv.cvtColor(annotated_image, cv.COLOR_RGB2BGR)
     # cv.imshow("frame", image_result)
