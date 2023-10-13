@@ -70,6 +70,7 @@ def draw_landmarks(image, result: GestureRecognizerResult):
 
 
 # Use OpenCV’s VideoCapture to start capturing from the webcam.
+# mine is set to one make sure you set your number to the correct number
 cap = cv.VideoCapture(1)
 
 frame_timestamp_ms = 0
