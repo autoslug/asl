@@ -105,11 +105,7 @@ with GestureRecognizer.create_from_options(options) as recognizer:
             # Drawing landmarks on frames
             mp_drawing.draw_landmarks(frame, handslms, mp_hands.HAND_CONNECTIONS)
 
-            # Predict gesture
-            #prediction = model_path.predict([landmarks])
-            # print(prediction)
-            #classID = np.argmax(prediction)
-            #className = classNames[classID]
+           
         frame_timestamp_ms += 1
         # Send live image data to perform gesture recognition.
         # The results are accessible via the `result_callback` provided in
