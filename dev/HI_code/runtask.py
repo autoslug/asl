@@ -186,7 +186,7 @@ with GestureRecognizer.create_from_options(options) as recognizer:
         recognizer.recognize_async(mp_image, frame_timestamp_ms)
 
         #overlays the text on the image
-        cv.putText(frame, "Press q to quit", (10, 30), cv.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 255), 2, cv.LINE_AA)
+        #cv.putText(frame, "Press q to quit", (10, 30), cv.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 255), 2, cv.LINE_AA)
 
         #shows image
         cv.imshow('MediaPipe Gesture Recognition', frame)
