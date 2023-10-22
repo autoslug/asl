@@ -135,7 +135,7 @@ with GestureRecognizer.create_from_options(options) as recognizer:
             Lookright=False
             Lookup=False
             Lookdown=False
-        cv.putText(frame, f"x coord is {lmx} and y coord is {lmy} lookup is {Lookup} \n lookdown is {Lookdown} \n lookleft is {Lookleft} \n lookright is {Lookright}", (10, 30), cv.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 255), 2, cv.LINE_AA)
+        cv.putText(frame, f"x coord is {lmx} and y coord is {lmy} lookup is {Lookup} \nlookdown is {Lookdown} \nlookleft is {Lookleft} \nlookright is {Lookright}", (10, 30), cv.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 255), 2, cv.LINE_AA)
 
 
         #shows image
