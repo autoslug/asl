@@ -121,7 +121,7 @@ with GestureRecognizer.create_from_options(options) as recognizer:
         recognizer.recognize_async(mp_image, frame_timestamp_ms)
 
         #overlays the text on the image
-        cv.putText(frame, f"x coord is {lmx} and y coord is {lmy}", (10, 30), cv.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 255), 2, cv.LINE_AA)
+        #cv.putText(frame, f"x coord is {lmx} and y coord is {lmy}", (20, 40), cv.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 255), 2, cv.LINE_AA)
         if lmx < 60:
             Lookleft=True
         elif lmx > 420:
@@ -135,8 +135,8 @@ with GestureRecognizer.create_from_options(options) as recognizer:
             Lookright=False
             Lookup=False
             Lookdown=False
-        cv.putText(frame, f"x coord is {lmx} and y coord is {lmy} lookup is {Lookup} lookdown is {Lookdown} lookleft is {Lookleft} lookright is {Lookright}", (10, 30), cv.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 255), 2, cv.LINE_AA)
-
+        cv.putText(frame, f"x coord is {lmx} and y coord is {lmy} ", (10, 30), cv.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 255), 2, cv.LINE_AA)
+        cv.putText(frame, f"lookup is {Lookup} ld is {Lookdown} lr is {Lookright} ls is {Lookleft}", (30, 50), cv.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 255), 2, cv.LINE_AA)
 
         #shows image
         cv.imshow('MediaPipe Gesture Recognition', frame)
