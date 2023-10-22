@@ -20,6 +20,8 @@ mp_hands = mp.solutions.hands
 mp_drawing = mp.solutions.drawing_utils
 mp_drawing_styles = mp.solutions.drawing_styles
 hands = mp_hands.Hands(max_num_hands=1, min_detection_confidence=0.7)
+lmx = 0
+lmy = 0
 
 
 # absolute path to the gesture_recognizer TFlite file
@@ -115,7 +117,8 @@ with GestureRecognizer.create_from_options(options) as recognizer:
         recognizer.recognize_async(mp_image, frame_timestamp_ms)
 
         #overlays the text on the image
-        cv.putText(frame, "Press q to quit", (10, 30), cv.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 255), 2, cv.LINE_AA)
+        cv.putText(frame, f"x coord is {lmx} and y coord is {lmy}", (10, 30), cv.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 255), 2, cv.LINE_AA)
+
 
         #shows image
         cv.imshow('MediaPipe Gesture Recognition', frame)
