@@ -73,7 +73,7 @@ def draw_landmarks(image, result: GestureRecognizerResult):
 
 # Use OpenCV’s VideoCapture to start capturing from the webcam.
 # mine is set to one make sure you set your number to the correct number
-cap = cv.VideoCapture(1)
+cap = cv.VideoCapture(0)
 
 frame_timestamp_ms = 0
 with GestureRecognizer.create_from_options(options) as recognizer:
@@ -118,6 +118,20 @@ with GestureRecognizer.create_from_options(options) as recognizer:
 
         #overlays the text on the image
         cv.putText(frame, f"x coord is {lmx} and y coord is {lmy}", (10, 30), cv.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 255), 2, cv.LINE_AA)
+        if lmx < 60:
+            Lookleft=True
+        elif lmx > 420:
+            Lookright=True
+        elif lmy < 60:
+            Lookup=True
+        elif lmy > 420:
+            Lookdown=True
+        else:
+            Lookleft=False
+            Lookright=False
+            Lookup=False
+            Lookdown=False
+        cv.putText(frame, f"x coord is {lmx} and y coord is {lmy} lookup is {Lookup} lookdown is {Lookdown} lookleft is {Lookleft} lookright is {Lookright}", (10, 30), cv.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 255), 2, cv.LINE_AA)
 
 
         #shows image
