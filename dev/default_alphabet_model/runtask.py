@@ -22,6 +22,10 @@ mp_drawing_styles = mp.solutions.drawing_styles
 hands = mp_hands.Hands(max_num_hands=1, min_detection_confidence=0.7)
 lmx = 0
 lmy = 0
+Lookleft=False
+Lookright=False
+Lookup=False
+Lookdown=False
 
 
 # absolute path to the gesture_recognizer TFlite file
