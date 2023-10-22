@@ -136,7 +136,7 @@ with GestureRecognizer.create_from_options(options) as recognizer:
             Lookup=False
             Lookdown=False
         cv.putText(frame, f"x coord is {lmx} and y coord is {lmy} ", (10, 30), cv.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 255), 2, cv.LINE_AA)
-        cv.putText(frame, f"lookup is {Lookup} ld is {Lookdown} lr is {Lookright} ls is {Lookleft}", (30, 50), cv.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 255), 2, cv.LINE_AA)
+        cv.putText(frame, f"up is {Lookup} down is {Lookdown} right is {Lookright} left is {Lookleft}", (30, 50), cv.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 255), 2, cv.LINE_AA)
 
         #shows image
         cv.imshow('MediaPipe Gesture Recognition', frame)
