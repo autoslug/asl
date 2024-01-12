@@ -167,3 +167,6 @@ exported_model/logs
 exported_model/best_model*
 exported_model/checkpoint
 exported_model/metadata.json
+
+# Mac DS_Store files
+.DS_Store
