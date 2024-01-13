@@ -80,9 +80,20 @@ def draw_landmarks(image, result: GestureRecognizerResult): # image is a numpy a
             # drawing_spec is a DrawingSpec object, which is a protobuf file
             connection_drawing_spec=mp_drawing_styles.get_default_hand_connections_style() # the style of the connections, .get_default_hand_connections_style() is a function that returns a DrawingSpec object
             )
-    return annotated_image # returns the image with the landmarks drawn on it
-    
+        # add border around region of interest
+        # get bounding box of hand
+        bounding_box = mp_hands.HandLandmark.WRIST # gets the bounding box of the hand
+        x, y, z = hand_landmark[bounding_box].x, hand_landmark[bounding_box].y, hand_landmark[bounding_box].z # gets the x, y, and z coordinates of the bounding box
+        width = hand_landmark[mp_hands.HandLandmark.THUMB_TIP].x - hand_landmark[mp_hands.HandLandmark.THUMB_CMC].x # gets the width of the bounding box
+        height = hand_landmark[mp_hands.HandLandmark.INDEX_FINGER_TIP].y - hand_landmark[mp_hands.HandLandmark.WRIST].y # gets the height of the bounding box
+        top_left = (int(x - width/2), int(y - height/2)) # gets the top left corner of the bounding box
+        bottom_right = (int(x + width/2), int(y + height/2)) # gets the bottom right corner of the bounding box
+        annotated_image2 = cv.rectangle(annotated_image, top_left, bottom_right, (255, 0, 0), 5) # draws the bounding box on the image
+        #bounding_box = cv.boundingRect(hand_landmark)
+        #cv.rectangle(annotated_image, (bounding_box[0], bounding_box[1]), (bounding_box[0]+bounding_box[2], bounding_box[1]+bounding_box[3]), (255, 0, 0), 2)
 
+    return annotated_image2 # returns the image with the landmarks drawn on it
+    
 
 
 # Use OpenCV’s VideoCapture to start capturing from the webcam.
